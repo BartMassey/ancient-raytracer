@@ -23,7 +23,7 @@ public:
   xform( enum xform_types );
   xform( enum xform_types, point & );
   xform( enum xform_types, float );
-  xform( xform & );
+  xform( const xform & );
   inline virtual ~xform( void );
   inline void operator= ( xform & );
   inline virtual float at( int, int );

@@ -20,7 +20,7 @@ private:
   inline virtual point *inormal( void );
 public:
   poly( int, texture & );
-  poly( poly & );
+  poly( const poly & );
   virtual void operator= ( poly & );
   inline virtual ~poly( void );
   inline virtual poly &set( int, point & );

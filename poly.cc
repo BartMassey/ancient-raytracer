@@ -124,7 +124,7 @@ poly::poly( int n, texture &t )
   cnormal = 0;
 }
 
-poly::poly( poly &q ) : object( *q.ot ), to( q.to ), toi( q.toi ) {
+poly::poly( const poly &q ) : object( *q.ot ), to( q.to ), toi( q.toi ) {
   int i;
   typedef point *pp;
 

@@ -12,7 +12,7 @@
 #ifdef INLINE
 
 
-inline point::point( point &p ) {
+inline point::point( const point &p ) {
   int i;
 
   nc = p.nc;

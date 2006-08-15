@@ -13,7 +13,7 @@ private:
 protected:  
   inline virtual float *ref( int );
 public:  
-  inline point( point & );
+  inline point( const point & );
   inline point( int );
   inline point( float, float );
   inline point( float, float, float );

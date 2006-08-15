@@ -132,7 +132,7 @@ xform::xform( enum xform_types t, point &r ) {
   }
 }
 
-xform::xform( xform &t ) {
+xform::xform( const xform &t ) {
   int i, j;
 
   m = &mv;
