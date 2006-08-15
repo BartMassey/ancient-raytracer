@@ -82,12 +82,16 @@ inline float point::operator* ( point &p ) {
   return r;
 }
 
-inline point point::operator- ( void ) {
-  point r(nc);
+inline void point::negate ( point &p ) {
   int i;
 
   for( i = 0; i < nc ; i++ )
-    r.c[i] = -c[i];
+    p.c[i] = -p.c[i];
+}
+
+inline point point::operator- ( void ) {
+  point r(*this);
+  negate(r);
   return r;
 }
 
@@ -101,7 +105,8 @@ inline point & point::operator+= ( point &p ) {
 }
 
 inline point & point::operator-= ( point &p ) {
-  (*this) += (-p);
+  point minusp(p);
+  (*this) += minusp;
   return (*this);
 }
 

@@ -7,7 +7,7 @@ class xform;
 
 class point {
 private:  
-  const int ncmax = 4;
+  static const int ncmax = 4;
   int nc;
   float c[ncmax];
 protected:  
@@ -23,6 +23,7 @@ public:
   inline virtual float &operator[] ( int );
   inline virtual float operator* ( point & );
   inline virtual point operator- ( void );
+  inline virtual void negate ( point & );
   inline virtual point operator- ( point & );
   inline virtual point operator+ ( point & );
   inline virtual point &operator+= ( point & );

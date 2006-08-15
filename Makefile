@@ -1,9 +1,9 @@
-CXX = gcc -Wall
+CXX = g++ -Wall
 CC = gcc -Wall
 DEBUGLEVEL = 0
 # DEFINES = -DDEBUG=$(DEBUGLEVEL)
-DEFINES =
-CDEBUGFLAGS = -g -O2
+DEFINES = '-Dinline=/*inline*/'
+CDEBUGFLAGS = -g # -O2
 CFLAGS = $(CDEBUGFLAGS) $(DEFINES)
 
 # LIBS = -lfb -lrle -lm
