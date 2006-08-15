@@ -1,0 +1,44 @@
+// -*- C++ -*-
+
+// a simple ray class -- implementation
+// Bart 2/91
+
+#ifndef NOOUTLINE
+
+#include "render.h"
+
+ray & ray::transform( xform &t ) {
+  point dorg(0.0,0.0,0.0);
+
+  ro.transform( t );
+  dorg.transform( t );
+  rd.transform( t );
+  rd -= dorg;
+  return (*this);
+}
+
+#endif
+
+#ifdef INLINE
+
+inline ray::ray( point & po, point & pd ) : ro(po), rd(pd) {
+  rd.unitize();
+}
+
+inline ray::ray( ray & r ) : ro(r.ro), rd(r.rd) {
+  // OK
+}
+
+inline point ray::at( float t ) {
+  return ro + (rd * t);
+}
+
+inline point ray::o( void ) {
+  return ro;
+}
+
+inline point ray::d( void ) {
+  return rd;
+}
+
+#endif

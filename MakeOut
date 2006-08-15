@@ -1,0 +1,2 @@
+gcc -Wall -O2  -c fast_texture.cc
+gcc -Wall -O2  -o render render.o point.o poly.o xform.o object.o  ray.o texture.o fast_texture.o board_texture.o  output.o ppm_output.o oldppm_output.o  sphere.o light.o model.o  generate.o frandom.o -lm
