@@ -11,6 +11,7 @@ private:
   point intensity;
 public:
   inline light( point &, point & );
+  inline virtual ~light( void ) {};
   inline virtual point &at( void );
   inline virtual point &i( void );
 };

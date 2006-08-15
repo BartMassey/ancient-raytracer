@@ -26,6 +26,7 @@ public:
 //  object( object & );
 //  virtual ~object( void );
 //  virtual void operator=( object & );
+  virtual ~object( void ) {};
   virtual void complete( void ) = 0;
   virtual void transform( xform & ) = 0;
   inline virtual int intersect( ray, intersection & ) = 0;

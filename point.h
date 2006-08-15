@@ -18,6 +18,7 @@ public:
   inline point( float, float );
   inline point( float, float, float );
   inline point( float, float, float, float );
+  inline virtual ~point( void ) {};
   inline virtual float at( int );
   inline virtual point &set( int, float );
   inline virtual float &operator[] ( int );

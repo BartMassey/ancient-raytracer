@@ -13,6 +13,7 @@ private:
 public:
   inline ray( point &, point & );
   inline ray( ray & );
+  inline virtual ~ray( void ) {};
   virtual ray &transform( xform & );
   inline virtual point at( float );
   inline virtual point o( void );
