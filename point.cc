@@ -71,7 +71,7 @@ inline float & point::operator[] ( int i ) {
   return *ref(i);
 }
 
-inline float point::operator* ( point &p ) {
+inline float point::operator* ( const point &p ) {
   int i;
   float r;
   
@@ -95,7 +95,7 @@ inline point point::operator- ( void ) {
   return r;
 }
 
-inline point & point::operator+= ( point &p ) {
+inline point & point::operator+= ( const point &p ) {
   int i;
   
   assert( nc == p.nc );
@@ -104,20 +104,20 @@ inline point & point::operator+= ( point &p ) {
   return (*this);
 }
 
-inline point & point::operator-= ( point &p ) {
+inline point & point::operator-= ( const point &p ) {
   point minusp(p);
   (*this) += minusp;
   return (*this);
 }
 
-inline point point::operator+ ( point &p ) {
+inline point point::operator+ ( const point &p ) {
   point r(*this);
 
   r += p;
   return r;
 }
 
-inline point point::operator- ( point &p ) {
+inline point point::operator- ( const point &p ) {
   point r(*this);
 
   r -= p;
@@ -138,7 +138,7 @@ inline point point::operator* ( float s ) {
   return (r *= s);
 }
 
-inline point &point::transform ( xform &m ) {
+inline point &point::transform ( const xform &m ) {
   int i, n;
   float t[4];
 
@@ -155,7 +155,7 @@ inline point &point::transform ( xform &m ) {
 }
 
 // cross-product
-inline point point::operator^( point &p ) {
+inline point point::operator^( const point &p ) {
   point r(3);
   
   assert( nc == 3 && p.nc == 3 );
@@ -165,7 +165,7 @@ inline point point::operator^( point &p ) {
   return r;
 }
 
-inline point point::vproduct( point &p ) {
+inline point point::vproduct( const point &p ) {
   int i;
   point r(nc);
 

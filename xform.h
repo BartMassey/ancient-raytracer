@@ -25,7 +25,7 @@ public:
   xform( enum xform_types, float );
   xform( const xform & );
   inline virtual ~xform( void );
-  inline void operator= ( xform & );
+  inline void operator= ( const xform & );
   inline virtual float at( int, int );
   inline virtual point row( int );
   inline virtual float rowmult( int, float [4] );

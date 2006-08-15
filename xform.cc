@@ -153,7 +153,7 @@ inline xform::~xform( void ) {
   delete mi;
 }
 
-inline void xform::operator=( xform &t ) {
+inline void xform::operator=( const xform &t ) {
   int i, j;
 
   m = &mv;
