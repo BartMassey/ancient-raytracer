@@ -9,7 +9,7 @@
 #define HS (D * tan( A ))
 #define HE (D * sin( A ))
 
-point trace( ray &r, model &m, int depth ) {
+point trace( const ray &r, const model &m, int depth ) {
   object *p, *current;
   intersection s, sb;
 

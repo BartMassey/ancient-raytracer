@@ -54,7 +54,7 @@ extern void printf( const char *, ... );
 #define MAX(X,Y)\
   (((X)>(Y))?(X):(Y))
 
-extern point trace( ray &, model &, int );
+extern point trace( const ray &, const model &, int );
 
 #ifdef DEBUG
 

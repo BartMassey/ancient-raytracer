@@ -29,8 +29,8 @@ texture *texture::tune_texture( model &m ) {
   return new fast_texture( m, *this );
 }
 
-point texture::value( point &at, point &gc, point &normal,
- model &m, int depth ) {
+point texture::value( const point &at, const point &gc, const point &normal,
+ const model &m, int depth ) {
 
   // this now should never be called
   assert( 0 );

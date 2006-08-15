@@ -31,7 +31,7 @@ public:
   inline virtual point &operator-= ( const point & );
   inline virtual point &operator*= ( float );
   inline virtual point operator* ( float );
-  inline virtual point &transform ( const xform & );
+  inline virtual point &transform ( xform & );
   inline virtual point operator^ ( const point & );
   inline virtual point vproduct( const point & );
   inline virtual float mag( void );

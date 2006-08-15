@@ -21,11 +21,11 @@ ray & ray::transform( xform &t ) {
 
 #ifdef INLINE
 
-inline ray::ray( point & po, point & pd ) : ro(po), rd(pd) {
+inline ray::ray( const point & po, const point & pd ) : ro(po), rd(pd) {
   rd.unitize();
 }
 
-inline ray::ray( ray & r ) : ro(r.ro), rd(r.rd) {
+inline ray::ray( const ray & r ) : ro(r.ro), rd(r.rd) {
   // OK
 }
 

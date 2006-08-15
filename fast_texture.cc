@@ -33,8 +33,8 @@ texture *fast_texture::tune_texture( model &m ) {
   return new fast_texture( m, *this );
 }
 
-point fast_texture::value( point &at, point &gc, point &normal,
- model &m, int depth ) {
+point fast_texture::value( const point &at, const point &gc, const point &normal,
+ const model &m, int depth ) {
   point result( ka );  // ambient term
   point lv( (pl - gc).unit() );  // unit vector from target toward light
   
@@ -44,8 +44,8 @@ point fast_texture::value( point &at, point &gc, point &normal,
     result += kd.vproduct( pli ) * fd;
     
   // specular terms
-  point pt( (gc - pe).unit() );  // unit vector from eye toward target
-  point ps( pt - normal * ( ( pt * normal ) * 2.0 ) );  // specular direction
+  const point &pt = (gc - pe).unit();  // unit vector from eye toward target
+  const point &ps = pt - normal * ( ( pt * normal ) * 2.0 );  // specular direction
 
   // specular diffusion term
   float fs = ps * lv;

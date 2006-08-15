@@ -17,5 +17,5 @@ public:
   fast_texture( fast_texture & );
   virtual texture *dup( void );
   virtual texture *tune_texture( model & );
-  virtual point value( point &, point &, point &, model &, int );
+  virtual point value( const point &, const point &, const point &, const model &, int );
 };

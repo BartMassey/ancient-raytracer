@@ -138,7 +138,7 @@ inline point point::operator* ( float s ) {
   return (r *= s);
 }
 
-inline point &point::transform ( const xform &m ) {
+inline point &point::transform ( xform &m ) {
   int i, n;
   float t[4];
 

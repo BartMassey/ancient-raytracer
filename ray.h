@@ -11,8 +11,8 @@ private:
   point ro; // origin
   point rd; // normalized direction
 public:
-  inline ray( point &, point & );
-  inline ray( ray & );
+  inline ray( const point &, const point & );
+  inline ray( const ray & );
   inline virtual ~ray( void ) {};
   virtual ray &transform( xform & );
   inline virtual point at( float );
