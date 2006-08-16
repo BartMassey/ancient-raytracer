@@ -16,7 +16,7 @@ fast_texture::fast_texture( model &m, texture &t )
   // do nothing
 }
 
-fast_texture::fast_texture( fast_texture &t )
+fast_texture::fast_texture( const fast_texture &t )
   : texture( t ),
     pl( t.pl ),
     pli( t.pli ),
@@ -25,16 +25,12 @@ fast_texture::fast_texture( fast_texture &t )
   // do nothing
 }
 
-texture *fast_texture::dup( void ) {
-  return new fast_texture( *this );
-}
-
 texture *fast_texture::tune_texture( model &m ) {
   return new fast_texture( m, *this );
 }
 
-point fast_texture::value( const point &at, const point &gc, const point &normal,
- const model &m, int depth ) {
+point fast_texture::value( point &at, point &gc, point &normal,
+ model &m, int depth ) {
   point result( ka );  // ambient term
   point lv( (pl - gc).unit() );  // unit vector from target toward light
   
@@ -44,8 +40,8 @@ point fast_texture::value( const point &at, const point &gc, const point &normal
     result += kd.vproduct( pli ) * fd;
     
   // specular terms
-  const point &pt = (gc - pe).unit();  // unit vector from eye toward target
-  const point &ps = pt - normal * ( ( pt * normal ) * 2.0 );  // specular direction
+  point pt = (gc - pe).unit();  // unit vector from eye toward target
+  point ps = pt - normal * ( ( pt * normal ) * 2.0 );  // specular direction
 
   // specular diffusion term
   float fs = ps * lv;
@@ -56,7 +52,7 @@ point fast_texture::value( const point &at, const point &gc, const point &normal
   }
   
   // ray tracing term
-  return result + ks.vproduct( trace( ray( gc, ps ), m, depth ).contract() );
+  return result + ks.vproduct( trace( ray( gc, ps ), m, depth ).contraction() );
 }
 
 #endif

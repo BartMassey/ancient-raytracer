@@ -33,7 +33,7 @@ output::output( char *fn, char *ext, int w, int h ) {
 
 output::~output( void ) {
   fclose( outfile );
-  delete name;
+  delete[] name;
 }
 
 #endif

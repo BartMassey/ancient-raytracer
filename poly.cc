@@ -93,7 +93,7 @@ int poly::intersect( ray r, intersection &s ) {
     // ray is behind plane, so no hit
     return 0;
   }
-  point i( ro + rd * t );
+  point i( ro + (rd * t) );
 #if DEBUGLEVEL > 0
   assert( fabs( Z(i) ) < TINY );
 #endif  
@@ -141,7 +141,7 @@ poly::poly( const poly &q ) : object( *q.ot ), to( q.to ), toi( q.toi ) {
     cnormal = new point( *q.cnormal );
 }
 
-void poly::operator= ( poly &q ) {
+void poly::operator= ( const poly &q ) {
   int i;
   typedef point *pp;
 
@@ -237,29 +237,27 @@ inline int poly::d( void ) {
   return dp;
 }
 
-inline void poly::transform( xform &t ) {
+inline void poly::transform( xform t ) {
   to *= t;
   toi = to.inverse();
 }
 
-inline poly & poly::contract( void ) {
+inline void poly::contract( void ) {
   int i;
 
   for( i = 0; i < np; i++ )
     if( p[i] )
       p[i]->contract();
   dp--;
-  return (*this);
 }
 
-inline poly & poly::dilate( float n ) {
+inline void poly::dilate( float n ) {
   int i;
 
   for( i = 0; i < np; i++ )
     if( p[i] )
       p[i]->dilate( n );
   dp++;
-  return (*this);
 }
 
 inline point *poly::inormal( void ) {

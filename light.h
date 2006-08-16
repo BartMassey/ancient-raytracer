@@ -10,7 +10,7 @@ private:
   point loc;
   point intensity;
 public:
-  inline light( const point &, const point & );
+  inline light( point, point );
   inline virtual ~light( void ) {};
   inline virtual point &at( void );
   inline virtual point &i( void );

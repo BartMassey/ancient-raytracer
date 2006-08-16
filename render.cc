@@ -9,7 +9,7 @@
 #define HS (D * tan( A ))
 #define HE (D * sin( A ))
 
-point trace( const ray &r, const model &m, int depth ) {
+point trace( ray r, model &m, int depth ) {
   object *p, *current;
   intersection s, sb;
 
@@ -34,8 +34,9 @@ point trace( const ray &r, const model &m, int depth ) {
       }
   // determine the pixel value
   if( current ) {
+    point nr(r.at( sb.t ));
     point value( (current->get_texture()).value(
-     *sb.at, r.at( sb.t ), *sb.normal, m, depth + 1 ) );
+     *sb.at, nr, *sb.normal, m, depth + 1 ) );
      
     delete sb.normal;
     delete sb.at;
@@ -85,7 +86,8 @@ static void render( object *scene, char *imgtype, int aa, int w, int h ) {
          2 * HS * (j + dojoggle( cos, k, aa, joggle )) / h - HS,
          2 * HS * (i + dojoggle( sin, k, aa, joggle )) / w - HS,
          D );
-        ray r( eye, rt.transform( view_xform ) );
+	rt.transform( view_xform );
+        ray r( eye, rt );
 
 	ave += trace( r, m, 0 ) * (1.0 / aa);
       }

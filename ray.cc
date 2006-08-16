@@ -7,21 +7,20 @@
 
 #include "render.h"
 
-ray & ray::transform( xform &t ) {
+void ray::transform( xform &t ) {
   point dorg(0.0,0.0,0.0);
 
   ro.transform( t );
   dorg.transform( t );
   rd.transform( t );
   rd -= dorg;
-  return (*this);
 }
 
 #endif
 
 #ifdef INLINE
 
-inline ray::ray( const point & po, const point & pd ) : ro(po), rd(pd) {
+inline ray::ray( point & po, point & pd ) : ro(po), rd(pd) {
   rd.unitize();
 }
 
@@ -30,7 +29,7 @@ inline ray::ray( const ray & r ) : ro(r.ro), rd(r.rd) {
 }
 
 inline point ray::at( float t ) {
-  return ro + (rd * t);
+  return (rd * t) + ro;
 }
 
 inline point ray::o( void ) {

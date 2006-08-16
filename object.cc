@@ -7,8 +7,8 @@
 
 #include "render.h"
 
-object::object( texture &t ) {
-  ot = t.dup();
+object::object( texture t ) {
+  ot = new texture( t );
   nextobj = 0;
 }
 

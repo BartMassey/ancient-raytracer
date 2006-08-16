@@ -71,7 +71,7 @@ inline float & point::operator[] ( int i ) {
   return *ref(i);
 }
 
-inline float point::operator* ( const point &p ) {
+inline float point::operator* ( point p ) {
   int i;
   float r;
   
@@ -95,50 +95,48 @@ inline point point::operator- ( void ) {
   return r;
 }
 
-inline point & point::operator+= ( const point &p ) {
+inline void point::operator+= ( point p ) {
   int i;
   
   assert( nc == p.nc );
   for( i = 0; i < nc ; i++ )
     c[i] += p.c[i];
-  return (*this);
 }
 
-inline point & point::operator-= ( const point &p ) {
+inline void point::operator-= ( point p ) {
   point minusp(p);
   (*this) += minusp;
-  return (*this);
 }
 
-inline point point::operator+ ( const point &p ) {
+inline point point::operator+ ( point p ) {
   point r(*this);
 
   r += p;
   return r;
 }
 
-inline point point::operator- ( const point &p ) {
+inline point point::operator- ( point p ) {
   point r(*this);
 
   r -= p;
   return r;
 }
 
-inline point & point::operator*= ( float s ) {
+inline void point::operator*= ( float s ) {
   int i;
 
   for( i = 0; i < nc; i++ )
     c[i] *= s;
-  return *this;
 }
 
 inline point point::operator* ( float s ) {
   point r(*this);
-  
-  return (r *= s);
+
+  r *= s;
+  return r;
 }
 
-inline point &point::transform ( xform &m ) {
+inline void point::transform ( xform &m ) {
   int i, n;
   float t[4];
 
@@ -151,11 +149,10 @@ inline point &point::transform ( xform &m ) {
     t[n++] = 1;
   for( i = 0; i < nc; i++ )
     c[i] = m.rowmult( i, t );
-  return (*this);
 }
 
 // cross-product
-inline point point::operator^( const point &p ) {
+inline point point::operator^( point p ) {
   point r(3);
   
   assert( nc == 3 && p.nc == 3 );
@@ -165,7 +162,7 @@ inline point point::operator^( const point &p ) {
   return r;
 }
 
-inline point point::vproduct( const point &p ) {
+inline point point::vproduct( point p ) {
   int i;
   point r(nc);
 
@@ -189,7 +186,7 @@ inline float point::mag( void ) {
   return sqrt( mag2() );
 }
 
-inline point & point::unitize( void ) {
+inline void point::unitize( void ) {
   float m = mag();
   
   assert( m > TINY );
@@ -203,7 +200,7 @@ inline point point::unit( void ) {
   return r;
 }
 
-inline point & point::homogenize( void ) {
+inline void point::homogenize( void ) {
   assert( nc == 4 );
   return (*this) *= (1.0 / c[3]);
 }
@@ -225,11 +222,10 @@ inline point point::dilation( float n ) {
   return r;
 }
 
-inline point &point::dilate( float n ) {
+inline void point::dilate( float n ) {
   assert( nc < ncmax );
   c[nc] = n;
   nc++;
-  return (*this);
 }
 
 inline point point::contraction( void ) {
@@ -241,9 +237,8 @@ inline point point::contraction( void ) {
   return r;
 }
 
-inline point &point::contract( void ) {
+inline void point::contract( void ) {
   nc--;
-  return (*this);
 }
 
 inline int point::d( void ) {

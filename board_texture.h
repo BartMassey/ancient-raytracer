@@ -14,9 +14,8 @@ private:
   texture *black_texture;
 public:
   board_texture( texture &, texture & );
-  board_texture( board_texture & );
+  board_texture( const board_texture & );
   virtual ~board_texture( void );
-  virtual texture *dup( void );
   virtual texture *tune_texture( model & );
   inline virtual point value( point &, point &, point &, model &, int );
   inline virtual void operator=( board_texture & );

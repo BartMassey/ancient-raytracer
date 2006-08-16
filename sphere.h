@@ -15,6 +15,6 @@ private:
 public:
   inline sphere( texture & );
   inline virtual void complete( void );
-  virtual void transform( xform & );
+  virtual void transform( xform );
   virtual int intersect( ray, intersection & );
 };

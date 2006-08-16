@@ -11,7 +11,7 @@
 
 #ifdef INLINE
 
-inline light::light( const point &l, const point &i ) : loc( l ), intensity( i ) {
+inline light::light( point l, point i ) : loc( l ), intensity( i ) {
   // do nothing
 }
 

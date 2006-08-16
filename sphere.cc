@@ -7,7 +7,7 @@
 
 #include "render.h"
 
-void sphere::transform( xform &t ) {
+void sphere::transform( xform t ) {
   to *= t;
   toi = to.inverse();
 }
@@ -34,11 +34,12 @@ int sphere::intersect( ray r, intersection &s ) {
     return 0;
   }
   point i( r.o() + r.d() * t );  // the intersection point in object coords
+  i.transform(toi);
 	
   // there are many possible mappings -- here's a lame one
   s.t = t;
   s.at = new point( X(i), Y(i) );
-  s.normal = new point( (i.transform(toi) - tr).unit() );
+  s.normal = new point( (i - tr).unit() );
   
   return 1;
 }

@@ -14,8 +14,7 @@ protected:
   point pe;	// eye-point
 public:
   fast_texture( model &, texture & );
-  fast_texture( fast_texture & );
-  virtual texture *dup( void );
-  virtual texture *tune_texture( model & );
-  virtual point value( const point &, const point &, const point &, const model &, int );
+  fast_texture( const fast_texture & );
+  virtual texture * tune_texture( model & );
+  virtual point value( point &, point &, point &, model &, int );
 };

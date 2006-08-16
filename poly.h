@@ -21,16 +21,16 @@ private:
 public:
   poly( int, texture & );
   poly( const poly & );
-  virtual void operator= ( poly & );
+  virtual void operator= ( const poly & );
   inline virtual ~poly( void );
   inline virtual poly &set( int, point & );
   inline virtual point &operator[] ( int );
   inline virtual int d( void );
   inline virtual int n( void );
-  inline virtual poly & dilate( float );
-  inline virtual poly & contract( void );
+  inline virtual void dilate( float );
+  inline virtual void contract( void );
   // abstract in superclass
   virtual void complete( void );
-  inline virtual void transform( xform & );
+  inline virtual void transform( xform );
   virtual int intersect( ray, intersection & );
 };

@@ -8,6 +8,7 @@ extern "C" {
 #ifndef PI
 #define PI 3.14159265358979
 #endif
+#include <string.h>
 }
 
 #include <assert.h>
@@ -54,7 +55,7 @@ extern void printf( const char *, ... );
 #define MAX(X,Y)\
   (((X)>(Y))?(X):(Y))
 
-extern point trace( const ray &, const model &, int );
+extern point trace( ray, model &, int );
 
 #ifdef DEBUG
 

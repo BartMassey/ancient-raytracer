@@ -8,17 +8,17 @@
 #include "render.h"
 
 board_texture::board_texture( texture &r, texture &b )
-  : texture(point(0,0,0), point(0,0,0), point(0,0,0), 0)
+  : texture(point(0,0,0), point(0,0,0), point(0,0,0), 0.0f)
 {
-  red_texture = r.dup();
-  black_texture = b.dup();
+  red_texture = new texture(r);
+  black_texture = new texture(b);
 }
 
-board_texture::board_texture( board_texture &t )
+board_texture::board_texture( const board_texture &t )
   : texture(point(0,0,0), point(0,0,0), point(0,0,0), 0)
 {
-  red_texture = t.red_texture->dup();
-  black_texture = t.black_texture->dup();
+  red_texture = new texture(*t.red_texture);
+  black_texture = new texture(*t.black_texture);
 }
 
 board_texture::~board_texture( void ) {
@@ -26,10 +26,6 @@ board_texture::~board_texture( void ) {
     delete red_texture;
   if( black_texture )
     delete black_texture;
-}
-
-texture *board_texture::dup( void ) {
-  return new board_texture( *this );
 }
 
 texture *board_texture::tune_texture( model &m ) {
@@ -65,8 +61,8 @@ inline void board_texture::operator=( board_texture &t )
   delete red_texture;
   delete black_texture;
   // in with the new
-  red_texture = t.red_texture->dup();
-  black_texture = t.black_texture->dup();
+  red_texture = new texture(*t.red_texture);
+  black_texture = new texture(*t.black_texture);
 }
 
 #endif

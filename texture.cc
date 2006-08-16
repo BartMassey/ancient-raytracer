@@ -7,12 +7,12 @@
 
 #include "render.h"
 
-texture::texture( point &nka, point &nkd, point &nks, float nns ) :
+texture::texture( point nka, point nkd, point nks, float nns ) :
  ka( nka ), kd( nkd ), ks( nks ), ns( nns ) {
   // do nothing
 }
 
-texture::texture( texture &t ) :
+texture::texture( const texture &t ) :
  ka( t.ka ), kd( t.kd ), ks( t.ks ), ns( t.ns ) {
   // do nothing
 }
@@ -21,16 +21,12 @@ texture::~texture( void ) {
   // do nothing
 }
 
-texture *texture::dup( void ) {
-  return new texture(*this);
-}
-
 texture *texture::tune_texture( model &m ) {
   return new fast_texture( m, *this );
 }
 
-point texture::value( const point &at, const point &gc, const point &normal,
- const model &m, int depth ) {
+point texture::value( point &at, point &gc, point &normal,
+ model &m, int depth ) {
 
   // this now should never be called
   assert( 0 );

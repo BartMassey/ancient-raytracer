@@ -11,8 +11,8 @@ xform::xform( enum xform_types t ) {
   int i, j;
 
   assert( t == XFORM_IDENTITY );
-  m = &mv;
-  mi = &miv;
+  m = &this->mv;
+  mi = &this->miv;
   for( i = 0; i < 4; i++ )
     for( j = 0; j < 4; j++ ) {
       (*m)[i][j] = (i == j);
@@ -33,8 +33,8 @@ xform::xform( enum xform_types t, float a ) {
   assert( ca >= -1 );
 #endif
   // now generate the xform
-  m = &mv;
-  mi = &miv;
+  m = &this->mv;
+  mi = &this->miv;
   for( i = 0; i < 4; i++ )
     for( j = 0; j < 4; j++ ) {
       (*m)[i][j] = 0;
@@ -88,12 +88,12 @@ xform::xform( enum xform_types t, float a ) {
   }
 }
 
-xform::xform( enum xform_types t, point &r ) {
+xform::xform( enum xform_types t, point r ) {
   int i, j;
 
-  m = &mv;
-  mi = &miv;
   assert( r.d() > 2 );
+  m = &this->mv;
+  mi = &this->miv;
   for( i = 0; i < 4; i++ )
     for( j = 0; j < 4; j++ ) {
       (*m)[i][j] = 0;
@@ -135,8 +135,8 @@ xform::xform( enum xform_types t, point &r ) {
 xform::xform( const xform &t ) {
   int i, j;
 
-  m = &mv;
-  mi = &miv;
+  m = &this->mv;
+  mi = &this->miv;
   for( i = 0; i < 4; i++ )
     for( j = 0; j < 4; j++ ) {
       (*m)[i][j] = (*t.m)[i][j];
@@ -149,15 +149,13 @@ xform::xform( const xform &t ) {
 #ifdef INLINE
 
 inline xform::~xform( void ) {
-  delete m;
-  delete mi;
 }
 
 inline void xform::operator=( const xform &t ) {
   int i, j;
 
-  m = &mv;
-  mi = &miv;
+  m = &this->mv;
+  mi = &this->miv;
   for( i = 0; i < 4; i++ )
     for( j = 0; j < 4; j++ ) {
       (*m)[i][j] = (*t.m)[i][j];
@@ -192,7 +190,7 @@ inline point xform::col( int j ) {
   return p;
 }
 
-inline xform & xform::operator*= ( xform &n ) {
+inline void xform::operator*= ( xform n ) {
   int i, j, k;
   xform l(*this);
 
@@ -208,29 +206,28 @@ inline xform & xform::operator*= ( xform &n ) {
       for( k = 1; k < 4; k++ )
         (*mi)[i][j] += (*l.mi)[i][k] * (*n.mi)[k][j];
     }
-  return (*this);
 }
 
-inline xform xform::operator* ( xform &n ) {
+inline xform xform::operator* ( xform n ) {
   xform r(*this);
 
   r *= n;
   return r;
 }
 
-inline xform &xform::invert( void ) {
+inline void xform::invert( void ) {
   gmatrix *tmp;
 
   tmp = m;
   m = mi;
   mi = tmp;
-  return (*this);
 }
 
 inline xform xform::inverse( void ) {
   xform t(*this);
   
-  return t.invert();
+  t.invert();
+  return t;
 }
 
 inline float xform::at( int i, int j ) {
