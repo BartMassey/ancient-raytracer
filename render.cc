@@ -51,18 +51,20 @@ point trace( ray r, model &m, int depth ) {
   assert( 0 );
 }
 
+#ifdef ANTIALIAS
 static inline double dojoggle( double (*f)( double ), int i, int n, double t ) {
   double a = (double) i / n + t;
   while( a > 0.5 )
     a -= 1.0;
   return 0.5 * f( PI * a );
 }
+#endif
 
 static void render( object *scene, char *imgtype, int aa, int w, int h ) {
   light thelight( point( 2 * HE, -HE, 0 ), point( 1.0, 1.0, 0.9 ) );
   point eye( HE, 0, 0 );
   xform view_xform( XFORM_ROTATE_Y, -A );
-  int i, j, k;
+  int i, j;
 
   output *out = 0;
   point dkgray( 0.2, 0.2, 0.2 );
@@ -78,9 +80,10 @@ static void render( object *scene, char *imgtype, int aa, int w, int h ) {
   // sweep over the whole viewplane
   for( j = h - 1; j >= 0; j-- ) {
     for( i = 0; i < w; i++ ) {
+#ifdef ANTIALIAS
       point ave( 0.0, 0.0, 0.0, 0.0 );
       double joggle = frandom();
-      for( k = 0; k < aa; k++ ) {
+      for( int k = 0; k < aa; k++ ) {
         point rt(
          2 * HS * (j + dojoggle( cos, k, aa, joggle )) / h - HS,
          2 * HS * (i + dojoggle( sin, k, aa, joggle )) / w - HS,
@@ -90,6 +93,15 @@ static void render( object *scene, char *imgtype, int aa, int w, int h ) {
 
 	ave += trace( r, m, 0 ) * (1.0 / aa);
       }
+#else
+      point rt(
+       2 * HS * j / h - HS,
+       2 * HS * i / w - HS,
+       D );
+      rt.transform( view_xform );
+      ray r( eye, rt );
+      point ave( trace( r, m, 0 ) );
+#endif
       out->putpixel( i, h - j - 1, ave );
     }
     out->flushrow( h - j - 1 );

@@ -41,10 +41,10 @@ inline void ppm_output::flushrow( int y ) {
   assert( y < ysize && cury == y );
   cury++;
   curx = 0;
-#if DEBUGLEVEL == 1
+#if DEBUGLEVEL == 2
   if( !(y % 10) )
 #endif
-#if DEBUGLEVEL >= 1
+#if DEBUGLEVEL >= 2
     printf( "output row: %d\n", y );
 #endif
 }
@@ -57,7 +57,7 @@ inline void ppm_output::putpixel( int x, int y, point &c ) {
 
   assert( x < xsize && curx == x && cury == y );
   curx++;
-#if DEBUGLEVEL > 1
+#if DEBUGLEVEL > 3
   printf( "output: %f %f %f\n", c[0], c[1], c[2] );
 #endif
   fputc( r, outfile );

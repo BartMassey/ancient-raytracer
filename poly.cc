@@ -172,7 +172,7 @@ void poly::complete( void ) {
   for( i = 0; i < np; i++ )
     assert( p[i] );
   cnormal = inormal();
-#if DEBUGLEVEL > 1
+#if DEBUGLEVEL > 2
   printf( "new poly: %d\n", np );
   for( i = 0; i < np; i++ ) {
     point q( *p[i] );
