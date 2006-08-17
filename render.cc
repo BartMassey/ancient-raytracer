@@ -23,12 +23,11 @@ point trace( ray r, model &m, int depth ) {
   current = 0;
   for( p = &m.scene; p; p = p->next() )
     if( p->intersect( r, s ) )
-      if( !current ) {
-        sb = s;
-	current = p;
-      } else if( s.t < sb.t ) {
-	delete sb.normal;
-	delete sb.at;
+      if( !current || s.t < sb.t ) {
+	if (current) {
+	  delete sb.normal;
+	  delete sb.at;
+	}
 	sb = s;
 	current = p;
       }
