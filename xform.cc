@@ -11,8 +11,8 @@ xform::xform( enum xform_types t ) {
   int i, j;
 
   assert( t == XFORM_IDENTITY );
-  m = &this->mv;
-  mi = &this->miv;
+  m = &mv;
+  mi = &miv;
   for( i = 0; i < 4; i++ )
     for( j = 0; j < 4; j++ ) {
       (*m)[i][j] = (i == j);
@@ -33,8 +33,8 @@ xform::xform( enum xform_types t, float a ) {
   assert( ca >= -1 );
 #endif
   // now generate the xform
-  m = &this->mv;
-  mi = &this->miv;
+  m = &mv;
+  mi = &miv;
   for( i = 0; i < 4; i++ )
     for( j = 0; j < 4; j++ ) {
       (*m)[i][j] = 0;
@@ -92,8 +92,8 @@ xform::xform( enum xform_types t, point r ) {
   int i, j;
 
   assert( r.d() > 2 );
-  m = &this->mv;
-  mi = &this->miv;
+  m = &mv;
+  mi = &miv;
   for( i = 0; i < 4; i++ )
     for( j = 0; j < 4; j++ ) {
       (*m)[i][j] = 0;
@@ -135,8 +135,8 @@ xform::xform( enum xform_types t, point r ) {
 xform::xform( const xform &t ) {
   int i, j;
 
-  m = &this->mv;
-  mi = &this->miv;
+  m = &mv;
+  mi = &miv;
   for( i = 0; i < 4; i++ )
     for( j = 0; j < 4; j++ ) {
       (*m)[i][j] = (*t.m)[i][j];
@@ -154,8 +154,8 @@ inline xform::~xform( void ) {
 inline void xform::operator=( const xform &t ) {
   int i, j;
 
-  m = &this->mv;
-  mi = &this->miv;
+  m = &mv;
+  mi = &miv;
   for( i = 0; i < 4; i++ )
     for( j = 0; j < 4; j++ ) {
       (*m)[i][j] = (*t.m)[i][j];
