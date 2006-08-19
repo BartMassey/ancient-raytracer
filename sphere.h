@@ -13,7 +13,7 @@ private:
   xform to, toi;
   point tr;
 public:
-  inline sphere( texture & );
+  inline sphere( texture * );
   inline virtual void complete( void );
   virtual void transform( xform );
   virtual int intersect( ray, intersection & );

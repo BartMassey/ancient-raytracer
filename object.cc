@@ -7,16 +7,13 @@
 
 #include "render.h"
 
-object::object( texture t ) {
-  ot = new texture( t );
+object::object( texture *t ) {
+  ot = t;
   nextobj = 0;
 }
 
 void object::tune_texture( model &m ) {
-  // "class" keyword is necessary here
-  // because texture() is a method of object
-  class texture *ft = ot->tune_texture( m );
-  delete ot;
+  texture *ft = ot->tune_texture( m );
   ot = ft;
 }
 

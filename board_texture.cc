@@ -7,11 +7,11 @@
 
 #include "render.h"
 
-board_texture::board_texture( texture &r, texture &b )
+board_texture::board_texture( texture *r, texture *b )
   : texture(point(0,0,0), point(0,0,0), point(0,0,0), 0.0f)
 {
-  red_texture = new texture(r);
-  black_texture = new texture(b);
+  red_texture = r;
+  black_texture = b;
 }
 
 board_texture::board_texture( const board_texture &t )
@@ -22,10 +22,6 @@ board_texture::board_texture( const board_texture &t )
 }
 
 board_texture::~board_texture( void ) {
-  if( red_texture )
-    delete red_texture;
-  if( black_texture )
-    delete black_texture;
 }
 
 texture *board_texture::tune_texture( model &m ) {
@@ -34,10 +30,7 @@ texture *board_texture::tune_texture( model &m ) {
 
   texture *nr = red_texture->tune_texture( m );
   texture *nb = black_texture->tune_texture( m );
-  board_texture result( *nr, *nb );
-  delete nr;
-  delete nb;
-  return new board_texture( result );
+  return new board_texture( nr, nb );
 }
 
 #endif
@@ -57,9 +50,6 @@ inline point board_texture::value( point &at, point &gc, point &normal,
 
 inline void board_texture::operator=( board_texture &t )
 {
-  // out with the old
-  delete red_texture;
-  delete black_texture;
   // in with the new
   red_texture = new texture(*t.red_texture);
   black_texture = new texture(*t.black_texture);

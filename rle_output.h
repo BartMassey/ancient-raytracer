@@ -3,10 +3,6 @@
 // RLE frame buffer output class -- interface
 // Bart 9/93
 
-extern "C" {
-#include <stdio.h>
-}
-
 class output;
 
 class rle_output : public output {

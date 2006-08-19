@@ -82,16 +82,16 @@ inline float point::operator* ( point p ) {
   return r;
 }
 
-inline void point::negate ( point &p ) {
+inline void point::negate ( void ) {
   int i;
 
-  for( i = 0; i < nc ; i++ )
-    p.c[i] = -p.c[i];
+  for( i = 0; i < nc; i++ )
+    c[i] = -c[i];
 }
 
 inline point point::operator- ( void ) {
   point r(*this);
-  negate(r);
+  r.negate( );
   return r;
 }
 
@@ -104,8 +104,10 @@ inline void point::operator+= ( point p ) {
 }
 
 inline void point::operator-= ( point p ) {
-  point minusp(p);
-  (*this) += minusp;
+  point np( p );
+
+  np.negate( );
+  (*this) += np;
 }
 
 inline point point::operator+ ( point p ) {
@@ -190,7 +192,7 @@ inline void point::unitize( void ) {
   float m = mag();
   
   assert( m > TINY );
-  return (*this) *= (1.0 / m);
+  (*this) *= (1.0 / m);
 }
 
 inline point point::unit( void ) {
@@ -202,7 +204,7 @@ inline point point::unit( void ) {
 
 inline void point::homogenize( void ) {
   assert( nc == 4 );
-  return (*this) *= (1.0 / c[3]);
+  (*this) *= (1.0 / c[3]);
 }
 
 inline point point::homogeneous( void ) {

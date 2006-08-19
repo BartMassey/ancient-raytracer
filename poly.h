@@ -19,7 +19,7 @@ private:
   virtual int contains( point & );
   inline virtual point *inormal( void );
 public:
-  poly( int, texture & );
+  poly( int, texture * );
   poly( const poly & );
   virtual void operator= ( const poly & );
   inline virtual ~poly( void );

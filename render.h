@@ -3,13 +3,13 @@
 // main header file for renderer
 // Bart 2/91
 
-extern "C" {
+#include <stdio.h>
+
 #include <math.h>
 #ifndef PI
 #define PI 3.14159265358979
 #endif
 #include <string.h>
-}
 
 #include <assert.h>
 
@@ -28,7 +28,6 @@ extern "C" {
 #endif  //DEBUG
 #if DEBUGLEVEL > 0
 extern "C" {
-#include <stdio.h>
 #ifndef __GNUC__  
 extern void printf( const char *, ... );
 #endif

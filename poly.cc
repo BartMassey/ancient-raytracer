@@ -111,7 +111,7 @@ int poly::intersect( ray r, intersection &s ) {
   return 1;
 }
 
-poly::poly( int n, texture &t )
+poly::poly( int n, texture *t )
  : object( t ), to( XFORM_IDENTITY ), toi( XFORM_IDENTITY ) {
   int i;
   typedef point *pp;
@@ -124,7 +124,7 @@ poly::poly( int n, texture &t )
   cnormal = 0;
 }
 
-poly::poly( const poly &q ) : object( *q.ot ), to( q.to ), toi( q.toi ) {
+poly::poly( const poly &q ) : object( q.ot ), to( q.to ), toi( q.toi ) {
   int i;
   typedef point *pp;
 

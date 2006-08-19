@@ -19,7 +19,7 @@ protected:
   texture *ot;
   object *nextobj;
 public:
-  object( texture );
+  object( texture * );
   virtual void tune_texture( model & );
 // these should be here, since otherwise the texture is never disposed of
 // but I'm just too lazy.

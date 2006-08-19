@@ -48,7 +48,7 @@ int sphere::intersect( ray r, intersection &s ) {
 
 #ifdef INLINE
 
-inline sphere::sphere( texture &t ) :
+inline sphere::sphere( texture *t ) :
  object( t ), to( XFORM_IDENTITY ), toi( XFORM_IDENTITY ), tr( 0.0, 0.0, 0.0 ) {
   // do nothing
 }

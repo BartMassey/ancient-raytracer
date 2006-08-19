@@ -21,10 +21,10 @@ object *generate(void) {
   point kgreen( 0.3, 1.0, 0.3 );
   point kwhite( 1.0, 1.0, 1.0 );
   point kblack( 0.0, 0.0, 0.0 );
-  texture tgreen( kblack, kgreen * 0.2, kgreen * 0.75, 100 );
-  texture tyellow( kblack, kyellow * 0.85, kwhite * 0.05, 10 );
-  texture tblue( kblack, kblue * 0.2, kblue * 0.75, 100 );
-  board_texture tboard( tyellow, tblue );
+  texture *tgreen = new texture( kblack, kgreen * 0.2, kgreen * 0.75, 100 );
+  texture *tyellow = new texture( kblack, kyellow * 0.85, kwhite * 0.05, 10 );
+  texture *tblue = new texture( kblack, kblue * 0.2, kblue * 0.75, 100 );
+  board_texture *tboard = new board_texture( tyellow, tblue );
 
   p = new poly( 4, tboard );
   p->set( 0, ll );

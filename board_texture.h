@@ -13,7 +13,7 @@ private:
   texture *red_texture;
   texture *black_texture;
 public:
-  board_texture( texture &, texture & );
+  board_texture( texture *, texture * );
   board_texture( const board_texture & );
   virtual ~board_texture( void );
   virtual texture *tune_texture( model & );

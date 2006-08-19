@@ -3,10 +3,6 @@
 // generic frame buffer output class -- interface
 // Bart 2/91
 
-extern "C" {
-#include <stdio.h>
-}
-
 class output {
 public:
   inline virtual void putpixel( int, int, point & ) = 0;

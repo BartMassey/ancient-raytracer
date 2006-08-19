@@ -24,7 +24,8 @@ public:
   inline virtual float &operator[] ( int );
   inline virtual float operator* ( point );
   inline virtual point operator- ( void );
-  inline virtual void negate ( point & );
+//  inline virtual void negate ( point & );
+  inline virtual void negate ( void );
   inline virtual point operator- ( point );
   inline virtual point operator+ ( point );
   inline virtual void operator+= ( point );
