@@ -19,7 +19,7 @@
 #define HE (D * sin( A ))
 
 point trace( ray r, model &m, int depth ) {
-  object *p, *current;
+  object *p, *current = 0;
   intersection s, sb;
 
   if( depth > m.maxdepth ) {
@@ -28,36 +28,37 @@ point trace( ray r, model &m, int depth ) {
     value.dilate(0);
     return value;
   }
-  // find the shallowest object struct by the ray
-  current = 0;
+  // find an object struct by the ray
   for( p = &m.scene; p; p = p->next() )
-    if( p->intersect( r, s ) )
-      if( !current || s.t < sb.t ) {
-	if (current) {
-	  delete sb.normal;
-	  delete sb.at;
-	}
+    if( p->intersect( r, s ) ) {
 	sb = s;
 	current = p;
-      }
-  // determine the pixel value
-  if( current ) {
-    point nr(r.at( sb.t ));
-    point value( (current->get_texture()).value(
-     *sb.at, nr, *sb.normal, m, depth + 1 ) );
-     
-    delete sb.normal;
-    delete sb.at;
-    value.dilate(1);
-    return value;
-  } else {
+	break;
+    }
+  if (!current) {
     point value( m.bg );
     
     value.dilate(0);
     return value;
   }
+  // if there are other intersections,
+  // choose the nearest
+  for( p = p->next(); p; p = p->next() )
+    if( p->intersect( r, s ) && s.t < sb.t ) {
+      delete sb.normal;
+      delete sb.at;
+      sb = s;
+      current = p;
+    }
+  // determine the pixel value
+  point nr(r.at( sb.t ));
+  point value( (current->get_texture()).value(
+   *sb.at, nr, *sb.normal, m, depth + 1 ) );
 
-  assert( 0 );
+  delete sb.normal;
+  delete sb.at;
+  value.dilate(1);
+  return value;
 }
 
 #ifdef ANTIALIAS
