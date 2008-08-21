@@ -1,11 +1,3 @@
-/* Copyright (c) 1991-2006 Bart Massey
- * ALL RIGHTS RESERVED
- *
- * This source code is made available under the terms of the
- * GNU General Public License, version 2.  Please see the file
- * COPYING in this directory for the complete license text.
- */
-
 
 // -*- C++ -*-
 
@@ -82,9 +74,9 @@ static void render( object *scene, char *imgtype, int aa, int w, int h ) {
 
   // create the appropriate output object
   if( !strcmp( imgtype, "-oldppm" ) )
-    out = new oldppm_output( "render.out", w, h );
+    out = new oldppm_output( (char *)"render.out", w, h );
   else if( !strcmp( imgtype, "-ppm" ) )
-    out = new ppm_output( "render.out", w, h );
+    out = new ppm_output( (char *)"render.out", w, h );
   else
     assert( 0 );
   // sweep over the whole viewplane
@@ -125,7 +117,7 @@ extern "C" {
 }
 
 int main( int argc, char **argv ) {
-  char *imgtype = "-ppm";
+  char *imgtype = (char *)"-ppm";
   int x, y;
 
   object *scene = generate();

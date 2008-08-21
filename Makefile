@@ -1,10 +1,8 @@
-# Copyright (c) 1991-2006 Bart Massey
+# Copyright © 1991-2006 Bart Massey
 # ALL RIGHTS RESERVED
-#
-# This source code is made available under the terms of the
-# GNU General Public License, version 2.  Please see the file
-# COPYING in this directory for the complete license text.
-
+# [This program is licensed under the "3-clause ('new') BSD License"]
+# Please see the file COPYING in the source
+# distribution of this software for license terms.
 
 CXX = g++ -Wall
 CC = gcc -Wall

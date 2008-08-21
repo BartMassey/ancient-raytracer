@@ -1,11 +1,3 @@
-/* Copyright (c) 1991-2006 Bart Massey
- * ALL RIGHTS RESERVED
- *
- * This source code is made available under the terms of the
- * GNU General Public License, version 2.  Please see the file
- * COPYING in this directory for the complete license text.
- */
-
 
 // -*- C++ -*-
 
@@ -27,7 +19,7 @@ extern void fprintf( FILE *, const char *, ... );
 #include "render.h"
 
 ppm_output::ppm_output( char *n, int w, int h ) :
-  output( n, ".ppm", w, h )
+  output( n, (char *)".ppm", w, h )
 {
   fprintf( outfile, "P6\n%d\n%d\n%d\n", w, h, 255 );
   curx = 0;
