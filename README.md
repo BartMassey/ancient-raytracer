@@ -15,7 +15,7 @@ results.
 
 This code has some OK reusable classes, and is reasonably
 fast on a modern box. (In 2014, 1000x1000 takes me about
-10s. In 1990, 100x100 was minutes.)
+4s. In 1990, 100x100 was minutes.)
 
 This work is available under the "BSD License". Please see
 the file COPYING in this distribution for license terms.
