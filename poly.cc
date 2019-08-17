@@ -51,8 +51,9 @@ int poly::contains( point &v )
       xl = MAX( x0, x1 );
     else
       return 0;
+  } else {
+      xl = x0 + (x1 - x0) * (yy - y0) / (y1 - y0);
   }
-  xl = x0 + (x1 - x0) * (yy - y0) / (y1 - y0);
   /* intercept second line */
   x0 = X(*r[2]);
   y0 = Y(*r[2]);
@@ -60,13 +61,14 @@ int poly::contains( point &v )
   y1 = Y(*r[3]);
   if( y1 - y0 < TINY ) {
     if( xx < x0 && xx < x1 )
-      xl = MIN( x0, x1 );
+      xr = MIN( x0, x1 );
     else if( xx > x0 && xx > x1 )
-      xl = MAX( x0, x1 );
+      xr = MAX( x0, x1 );
     else
       return 0;
+  } else {
+      xr = x0 + (x1 - x0) * (yy - y0) / (y1 - y0);
   }
-  xr = x0 + (x1 - x0) * (yy - y0) / (y1 - y0);
   /* containment test */
   if( xl < xr && xl < xx && xx < xr )
     return 1;
