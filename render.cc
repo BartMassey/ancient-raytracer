@@ -62,7 +62,7 @@ static inline double dojoggle( double (*f)( double ), int i, int n, double t ) {
 }
 #endif
 
-static void render( object *scene, char *imgtype, int aa, int w, int h ) {
+static void render( object *scene, char *imgtype, int w, int h ) {
   light thelight( point( 2 * HE, -HE, 0 ), point( 1.25, 1.25, 1.15 ) );
   point eye( HE, 0, 0 );
   xform view_xform( XFORM_ROTATE_Y, -A );
@@ -83,6 +83,7 @@ static void render( object *scene, char *imgtype, int aa, int w, int h ) {
   for( j = h - 1; j >= 0; j-- ) {
     for( i = 0; i < w; i++ ) {
 #ifdef ANTIALIAS
+      int aa = ANTIALIAS;
       point ave( 0.0, 0.0, 0.0, 0.0 );
       double joggle = frandom();
       for( int k = 0; k < aa; k++ ) {
@@ -123,7 +124,7 @@ int main( int argc, char **argv ) {
     argc--;
   }
   if( argc == 3 && (x = atoi( argv[1] )) && (y = atoi( argv[2] )) ) {
-    render( scene, imgtype, 3, x, y );
+    render( scene, imgtype, x, y );
     // all done
     return 0;
   }
