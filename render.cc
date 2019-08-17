@@ -63,7 +63,7 @@ static inline double dojoggle( double (*f)( double ), int i, int n, double t ) {
 #endif
 
 static void render( object *scene, char *imgtype, int aa, int w, int h ) {
-  light thelight( point( 2 * HE, -HE, 0 ), point( 1.0, 1.0, 0.9 ) );
+  light thelight( point( 2 * HE, -HE, 0 ), point( 1.25, 1.25, 1.15 ) );
   point eye( HE, 0, 0 );
   xform view_xform( XFORM_ROTATE_Y, -A );
   int i, j;
