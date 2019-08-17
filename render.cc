@@ -112,10 +112,6 @@ static void render( object *scene, char *imgtype, int aa, int w, int h ) {
   delete out;
 }
 
-extern "C" {
-  int atoi( char * );
-}
-
 int main( int argc, char **argv ) {
   char *imgtype = (char *)"-ppm";
   int x, y;
