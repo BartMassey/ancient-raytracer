@@ -122,7 +122,6 @@ int main( int argc, char **argv ) {
     argv++;
     argc--;
   }
-  x = y = 0;  // GCC screwup workaround
   if( argc == 3 && (x = atoi( argv[1] )) && (y = atoi( argv[2] )) ) {
     render( scene, imgtype, 3, x, y );
     // all done
