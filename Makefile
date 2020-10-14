@@ -4,16 +4,21 @@
 # Please see the file COPYING in the source
 # distribution of this software for license terms.
 
-CXX = g++ -Wall
-CC = gcc -Wall
+CXX = clang++ -Wall
+CC = clang -Wall
 DEBUGLEVEL = 0
 ANTIALIAS = 3
 DEFINES = -DDEBUG=$(DEBUGLEVEL) -DANTIALIAS=$(ANTIALIAS)
-CDEBUGFLAGS = -O4
+CDEBUGFLAGS = -O3
 CFLAGS = $(CDEBUGFLAGS) $(DEFINES)
 
 # LIBS = -lfb -lrle -lm
 LIBS = -lm
+SRCS = render.cc point.cc poly.cc xform.cc object.cc \
+  ray.cc texture.cc fast_texture.cc board_texture.cc \
+  output.cc ppm_output.cc oldppm_output.cc \
+  sphere.cc light.cc model.cc \
+  generate.cc frandom.c
 OBJS = render.o point.o poly.o xform.o object.o \
   ray.o texture.o fast_texture.o board_texture.o \
   output.o ppm_output.o oldppm_output.o \
@@ -40,3 +45,6 @@ render.o generate.o: frandom.h generate.h
 
 clean:
 	-rm -f *.o render
+
+analyze:
+	clang++ --analyze $(SRCS)
