@@ -14,11 +14,12 @@ CFLAGS = $(CDEBUGFLAGS) $(DEFINES)
 
 # LIBS = -lfb -lrle -lm
 LIBS = -lm
-SRCS = render.cc point.cc poly.cc xform.cc object.cc \
+CPPSRCS = render.cc point.cc poly.cc xform.cc object.cc \
   ray.cc texture.cc fast_texture.cc board_texture.cc \
   output.cc ppm_output.cc oldppm_output.cc \
   sphere.cc light.cc model.cc \
   generate.cc frandom.c
+CSRCS = frandom.c
 OBJS = render.o point.o poly.o xform.o object.o \
   ray.o texture.o fast_texture.o board_texture.o \
   output.o ppm_output.o oldppm_output.o \
@@ -47,4 +48,5 @@ clean:
 	-rm -f *.o render *.plist
 
 analyze:
-	clang++ --analyze $(SRCS)
+	clang --analyze $(CSRCS) $(CPPSRCS)
+
