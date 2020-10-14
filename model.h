@@ -16,7 +16,8 @@ class point;
 class light;
 class object;
 
-struct model {
+class model {
+public:
   point &eye;
   light &thelight;
   object &scene;
