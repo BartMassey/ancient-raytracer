@@ -77,8 +77,8 @@ inline float point::operator* ( point p ) {
   float r;
   
   assert( nc == p.nc );
-  r = c[0] * p.c[0];
-  for( i = 1; i < nc ; i++ )
+  r = 0.0;
+  for( i = 0; i < nc ; i++ )
     r += c[i] * p.c[i];
   return r;
 }
@@ -179,8 +179,8 @@ inline float point::mag2( void ) {
   int i;
   float r;
 
-  r = c[0] * c[0];
-  for( i = 1; i < nc ; i++ )
+  r = 0.0;
+  for( i = 0; i < nc ; i++ )
     r += c[i] * c[i];
   return r;
 }
