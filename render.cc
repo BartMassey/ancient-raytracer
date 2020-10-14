@@ -128,6 +128,6 @@ int main( int argc, char **argv ) {
     // all done
     return 0;
   }
-  fprintf( stderr, "usage: render [-imgtype] x y\n" );
+  fprintf( stderr, "usage: render [-oldppm|-ppm] x y\n" );
   return 1;
 }
