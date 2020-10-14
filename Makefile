@@ -11,6 +11,7 @@ ANTIALIAS = 3
 DEFINES = -DDEBUG=$(DEBUGLEVEL) -DANTIALIAS=$(ANTIALIAS)
 CDEBUGFLAGS = -O3
 CFLAGS = $(CDEBUGFLAGS) $(DEFINES)
+CLANG_ANALYZE = clang --analyzer-output plist-multi-file --analyze
 
 # LIBS = -lfb -lrle -lm
 LIBS = -lm
@@ -48,5 +49,4 @@ clean:
 	-rm -f *.o render *.plist
 
 analyze:
-	clang --analyze $(CSRCS) $(CPPSRCS)
-
+	$(CLANG_ANALYZE) $(CPPSRCS) $(CSRCS)
