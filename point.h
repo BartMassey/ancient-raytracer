@@ -20,6 +20,7 @@ private:
   float c[ncmax];
 protected:  
   inline virtual float *ref( int );
+  inline virtual float cross_term( point, int, int );
 public:  
   inline point( const point & );
   inline point( int );

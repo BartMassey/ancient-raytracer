@@ -154,14 +154,20 @@ inline void point::transform ( xform &m ) {
     c[i] = m.rowmult( i, t );
 }
 
+// compute one coordinate of cross product
+inline float point::cross_term(point p, int i1, int i2) {
+    return c[i1] * p.c[i2] - p.c[i1] * c[i2];
+}
+
 // cross-product
 inline point point::operator^( point p ) {
   point r(3);
   
   assert( nc == 3 && p.nc == 3 );
-  r.c[0] = c[1] * p.c[2] - c[2] * p.c[1];
-  r.c[1] = c[2] * p.c[0] - c[0] * p.c[2];
-  r.c[2] = c[0] * p.c[1] - c[1] * p.c[0];
+  // Each component is computed from the two other
+  // components in a symmetric way.
+  for (int i = 0; i < 3; i++)
+      r.c[i] = cross_term(p, (i + 1) % 3,  (i + 2) % 3);
   return r;
 }
 
