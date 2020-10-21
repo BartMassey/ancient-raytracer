@@ -10,6 +10,7 @@
 #define ZB (D * cos( A ))
 #define JOGGLE (100 * TINY * (frandom() - 0.5))
 
+// Return the model to be rendered.
 object *generate(void) {
   poly *p;
   sphere *s1, *s2, *s3;
