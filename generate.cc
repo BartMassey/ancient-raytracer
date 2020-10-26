@@ -35,23 +35,23 @@ object *generate(void) {
   p->set( 3, lr );
   p->transform( xform( XFORM_ROTATE_Y, -PI / 2 ) );
   p->transform( xform( XFORM_SCALE, point( 1, D / 8, D / 8 ) ) );
-  p->transform( xform( XFORM_TRANSLATE,
-   point( -JOGGLE, JOGGLE, ZB + JOGGLE ) ) );
+  auto xboard = point( -JOGGLE, JOGGLE, ZB + JOGGLE );
+  p->transform( xform( XFORM_TRANSLATE, xboard ) );
   p->complete();
   s1 = new sphere( tgreen );
   s1->transform( xform( XFORM_SCALE, point( 1.5, 1.5, 1.5 ) ) );
-  s1->transform( xform( XFORM_TRANSLATE,
-   point( 1.5 + JOGGLE, JOGGLE, ZB + JOGGLE ) ) );
+  auto xgreen = point( 1.5 + JOGGLE, JOGGLE, ZB + JOGGLE );
+  s1->transform( xform( XFORM_TRANSLATE, xgreen ) );
   s1->append( *p );
   s1->complete();
   s2 = new sphere( tblue );
-  s2->transform( xform( XFORM_TRANSLATE,
-   point( 1 + JOGGLE, -D / 3 + JOGGLE, ZB - D / 5 + JOGGLE ) ) );
+  auto xblue = point( 1 + JOGGLE, -D / 3 + JOGGLE, ZB - D / 5 + JOGGLE );
+  s2->transform( xform( XFORM_TRANSLATE, xblue ) );
   s2->append( *s1 );
   s2->complete();
   s3 = new sphere( tyellow );
-  s3->transform( xform( XFORM_TRANSLATE,
-   point( 1 + JOGGLE, D / 3 + JOGGLE, ZB - D / 3 + JOGGLE ) ) );
+  auto xyellow = point( 1 + JOGGLE, D / 3 + JOGGLE, ZB - D / 3 + JOGGLE );
+  s3->transform( xform( XFORM_TRANSLATE, xyellow ) );
   s3->append( *s2 );
   s3->complete();
   return s3;
