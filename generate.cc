@@ -18,7 +18,7 @@ object *generate(void) {
   point ul( -4.0, 4.0 );
   point ur( 4.0, 4.0 );
   point lr( 4.0, -4.0 );
-  point kyellow( 1.0, 0.85, 0.5 );
+  point kyellow( 1.0, 0.9, 0.7 );
   point kblue( 0.3, 0.3, 1.0 );
   point kgreen( 0.3, 1.0, 0.3 );
   point kwhite( 1.0, 1.0, 1.0 );
