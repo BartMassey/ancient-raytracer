@@ -46,7 +46,7 @@ $(OBJS): render.h $(HDRS)
 render.o generate.o: frandom.h generate.h
 
 clean:
-	-rm -f *.o render *.plist
+	-rm -f *.o render *.plist render.out.ppm
 
 analyze:
 	$(CXX) $(ANALYZE) $(CXXSRCS)
